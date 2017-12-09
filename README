@@ -1,0 +1,6 @@
+.. code:: console
+
+   $ gitardiff --help
+   Usage: gitardiff TAR-FILE-1 TAR-FILE-2
+
+.. vim:ft=rst ts=3 sts=3 sw=3 et
