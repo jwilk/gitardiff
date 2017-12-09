@@ -42,7 +42,7 @@ do
     date=$(LC_ALL=C stat -c '%y' "$tarfile")
     tar -C "$unpackdir" -xaf "$tarfile"
     git -C "$gitdir" config --replace-all core.worktree "$unpackdir"
-    git -C "$gitdir" add -A .
+    git -C "$gitdir" add -f -A .
     git -C "$gitdir" commit --quiet -m '' --allow-empty-message --date "$date"
 done
 rm -rf "$unpackdir"
