@@ -30,7 +30,7 @@ do
     git -C "$gitdir" commit --quiet -m '' --allow-empty-message --date "$date"
 done
 rm -rf "$unpackdir"
-git -c diff.renameLimit=999999 -C "$gitdir" show -M "$@"
+git -c diff.renameLimit=65535 -C "$gitdir" show -M "$@"
 rm -rf "$tmpdir"
 
 # vim:ts=4 sts=4 sw=4 et
