@@ -16,21 +16,18 @@ tar1="$1"
 tar2="$2"
 shift 2
 tmpdir=$(mktemp -t -d gitardiff.XXXXXX)
-gitdir="$tmpdir/git"
-unpackdir="$tmpdir/unpack"
-git init --quiet "$gitdir"
+n=0
 for tarfile in "$tar1" "$tar2"
 do
-    rm -rf "$unpackdir"
-    mkdir "$unpackdir"
-    date=$(LC_ALL=C stat -c '%y' "$tarfile")
-    tar -C "$unpackdir" -xaf "$tarfile"
-    git -C "$gitdir" config --replace-all core.worktree "$unpackdir"
-    git -C "$gitdir" add -f -A .
-    git -C "$gitdir" commit --quiet -m '' --allow-empty-message --date "$date"
+    n=$((n + 1))
+    mkdir "$tmpdir/$n"
+    tar -C "$tmpdir/$n" -xaf "$tarfile"
 done
-rm -rf "$unpackdir"
-git -c diff.renameLimit=65535 -C "$gitdir" show -M "$@"
+cd "$tmpdir"
+mv 1 a
+mv 2 b
+git diff --no-index -l 65535 --src-prefix='' --dst-prefix='' a/ b/
+cd /
 rm -rf "$tmpdir"
 
 # vim:ts=4 sts=4 sw=4 et
