@@ -26,6 +26,7 @@ done
 cd "$tmpdir"
 mv 1 a
 mv 2 b
+git init --quiet .
 git diff --no-index -l 65535 --src-prefix='' --dst-prefix='' a/ b/
 cd /
 rm -rf "$tmpdir"
