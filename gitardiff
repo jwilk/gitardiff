@@ -7,7 +7,7 @@ set -e -u
 
 if [ $# -ne 2 ]
 then
-    me=$(basename "$0")
+    me=${0##*/}
     printf 'Usage: %s TAR-FILE-1 TAR-FILE-2\n' "$me" >&2
     exit 1
 fi
